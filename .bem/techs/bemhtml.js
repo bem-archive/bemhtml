@@ -34,7 +34,7 @@ exports.getBuildResult = function(prefixes, suffix, outputDir, outputName) {
         .then(function(sources) {
             sources = sources.join('\n');
 
-            var BEMHTML = require('../../__html/lib/bemhtml');
+            var BEMHTML = require('../../common.blocks/bemhtml/lib/bemhtml');
 
             return BEMHTML.translate(sources, {
               devMode: process.env.BEMHTML_ENV == 'development'
