@@ -1,4 +1,5 @@
 var BEM = require('bem'),
+    BEMC = require('bemc'),
     Q = BEM.require('q'),
     PATH = require('path'),
     SYS = require('util'),
@@ -34,10 +35,9 @@ exports.getBuildResult = function(prefixes, suffix, outputDir, outputName) {
         .then(function(sources) {
             sources = sources.join('\n');
 
-            var BEMHTML = require('../../common.blocks/bemhtml/lib/bemhtml');
-
-            return BEMHTML.translate(sources, {
-              devMode: process.env.BEMHTML_ENV == 'development'
+            return BEMC.translate(sources, {
+                exportName: 'BEMHTML',
+                devMode: process.env.BEMHTML_ENV == 'development'
             });
         });
 
