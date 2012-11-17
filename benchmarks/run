@@ -5,12 +5,11 @@ var fs = require('fs'),
     path = require('path'),
     benchmark = require('benchmark'),
     microtime = require('microtime'),
-    bemhtml = require('../lib/bemhtml');
+    bemc = require('bemc');
 
-var ibem = fs.readFileSync(path.resolve(
+var bemhtml = fs.readFileSync(path.resolve(
   __dirname,
-  '..',
-  'i-bem__html.bemhtml'
+  '../common.blocks/bemhtml/bemhtml.bemhtml'
 )).toString();
 
 var suite = new benchmark.Suite();
@@ -20,9 +19,9 @@ fs.readdirSync(__dirname).filter(function(file) {
 }).map(function(file) {
   return path.resolve(__dirname, file).replace(/\.bemhtml$/, '');
 }).forEach(function(file) {
-  var content = ibem + '\n' + fs.readFileSync(file + '.bemhtml').toString(),
+  var content = bemhtml + '\n' + fs.readFileSync(file + '.bemhtml').toString(),
       json = require(file + '.json'),
-      template = bemhtml.compile(content, { engine: 'sort-group' });
+      template = bemc.compile(content, { engine: 'sort-group' });
 
   suite.add(path.basename(file).replace(/\-benchmark$/, ''), function () {
     template.call(json);

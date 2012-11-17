@@ -1,13 +1,13 @@
 var assert = require('assert'),
     fs = require('fs'),
     path = require('path'),
-    bemhtml = require('../lib/bemhtml'),
-    iBem = fs.readFileSync(path.resolve(
+    bemc = require('bemc'),
+    bemhtml = fs.readFileSync(path.resolve(
       __dirname,
-      '../i-bem__html.bemhtml'
+      '../common.blocks/bemhtml/bemhtml.bemhtml'
     )).toString();
 
-suite('i-bem block and others', function() {
+suite('bemhtml block and others', function() {
   function readFile(file) {
     return fs.readFileSync(path.resolve(__dirname, 'files', file)).toString();
   }
@@ -21,12 +21,12 @@ suite('i-bem block and others', function() {
       };
 
       assert.equal(
-        bemhtml.compile(iBem + contents.src, { devMode: true, raw: raw })
+        bemc.compile(bemhtml + contents.src, { devMode: true, raw: raw })
             .call(contents.data) + '\n',
         contents.dst
       );
       assert.equal(
-        bemhtml.compile(iBem + contents.src, { devMode: false, raw: raw })
+        bemc.compile(bemhtml + contents.src, { devMode: false, raw: raw })
             .call(contents.data) + '\n',
         contents.dst
       );
