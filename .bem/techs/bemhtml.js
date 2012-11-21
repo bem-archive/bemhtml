@@ -32,13 +32,17 @@ exports.techMixin = {
                 }));
             })
             .then(function(sources) {
-                sources = sources.join('\n');
-
-                return BEMC.translate(sources, {
-                    exportName: 'BEMHTML',
-                    devMode: process.env.BEMHTML_ENV == 'development'
-                });
+                return _this.getTranslatedTemplates(sources.join('\n'));
             });
+
+    },
+
+    getTranslatedTemplates: function(source) {
+
+        return BEMC.translate(source, {
+            exportName: 'BEMHTML',
+            devMode: process.env.BEMHTML_ENV == 'development'
+        });
 
     },
 
