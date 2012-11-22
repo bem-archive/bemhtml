@@ -1,0 +1,36 @@
+!this._mode {
+
+    true: {
+
+        var vBlock = this.ctx.block,
+            vElem = this.ctx.elem,
+            block = this._currBlock || this.block;
+
+        this.ctx || (this.ctx = {});
+
+        return apply({
+            _mode: 'default',
+            block: vBlock || (vElem ? block : undefined),
+            _currBlock: (vBlock || vElem) ? undefined : block,
+            elem: this.ctx.elem,
+            mods: (vBlock ? this.ctx.mods : this.mods) || {},
+            elemMods: this.ctx.elemMods || {}
+        });
+
+    }
+
+}
+
+default: this.ctx
+
+!this._start: {
+
+    var ctx = {
+        ctx: this,
+        _start: true,
+        apply: apply
+    };
+
+    return ctx.apply();
+
+}
