@@ -4,9 +4,9 @@ var BEM = require('bem'),
 
 exports.techMixin = {
 
-    getBemhtml: function(prefix) {
+    getBemtree: function(prefix) {
 
-        var path = this.getPath(prefix, 'bemhtml.js');
+        var path = this.getPath(prefix, 'bemtree.js');
         return BEM.util.readFile(path)
             .then(function(c) {
                 /** @name BEMHTML variable appears after runInThisContext() call */
@@ -16,9 +16,9 @@ exports.techMixin = {
 
     },
 
-    getBemjson: function(prefix) {
+    getJson: function(prefix) {
 
-        var path = this.getPath(prefix, 'bemjson.js');
+        var path = this.getPath(prefix, 'json.js');
         return BEM.util.readFile(path)
             .then(function(c) {
                 return VM.runInThisContext(c, path);
@@ -26,20 +26,20 @@ exports.techMixin = {
 
     },
 
-    getHtml: function(bemhtml, bemjson) {
+    getBemjson: function(bemtree, json) {
 
-        return Q.all([bemhtml, bemjson])
-            .spread(function(bemhtml, bemjson) {
-                return bemhtml.apply(bemjson);
+        return Q.all([bemtree, json])
+            .spread(function(bemtree, json) {
+                return bemtree.apply(json);
             });
 
     },
 
     getCreateResult: function(path, suffix, vars) {
 
-        return this.getHtml(
-            this.getBemhtml(vars.Prefix),
-            this.getBemjson(vars.Prefix));
+        return this.getBemjson(
+            this.getBemtree(vars.Prefix),
+            this.getJson(vars.Prefix));
 
     },
 
@@ -49,7 +49,11 @@ exports.techMixin = {
     },
 
     getDependencies: function() {
-        return ['bemjson.js', 'bemhtml.js'];
+        return ['json.js', 'bemtree'];
+    },
+
+    getSuffixes: function() {
+        return ['bemjson.js'];
     }
 
 };
