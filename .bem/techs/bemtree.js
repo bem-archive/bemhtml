@@ -1,6 +1,6 @@
 var BEMC = require('bemc');
 
-exports.baseTechPath = require.resolve('./bemhtml.js');
+exports.baseTechPath = require.resolve('./bemc.js');
 
 exports.techMixin = {
 
