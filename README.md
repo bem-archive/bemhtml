@@ -1,8 +1,8 @@
-# bemhtml core library
+# BEMHTML core library
 
 [![Build Status](https://secure.travis-ci.org/bem/bemhtml.png?branch=master)](https://travis-ci.org/bem/bemhtml)
 
-`bemhtml` is an XSLT inspired template language that helps to write BEM-oriented templates to generate HTML
+BEMHTML is an XSLT inspired template language that helps to write BEM-oriented templates to generate HTML
 in a declarative way.
 
 `bemhtml` library provides:
@@ -13,7 +13,7 @@ in a declarative way.
 - `bemjson2html` tech module for use with `bem create` command to help building static `.html` from static `.bemjson.js`
   and compiled `.bemhtml.js` bundle files
 
-The core of `bemhtml` compiler is implemented using [OmetaJS](https://github.com/veged/ometa-js)
+The core of BEMHTML compiler is implemented using [OmetaJS](https://github.com/veged/ometa-js)
 and [xjst](https://github.com/veged/xjst).
 
 ## Quick syntax example
