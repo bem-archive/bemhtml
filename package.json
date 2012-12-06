@@ -6,7 +6,7 @@
     "xjst": "~ 0.3.3",
     "ometajs": "~ 3.1.4",
     "dom-js": "~0.0.9",
-    "bemc": "~1.0.0"
+    "bemc": "~1.0.2"
   },
   "devDependencies": {
     "mocha": "1.2.x",
